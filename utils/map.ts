@@ -21,7 +21,6 @@ export function propertiesTableDiv(
     props: ObjectLiteral,
     lngLat: [number, number]
 ) {
-    console.log(lngLat);
     const listRow: string[] = [
         `<tr style='background-color: #dddddd; font-weight: bold'>
       <td>NAMA</td>
