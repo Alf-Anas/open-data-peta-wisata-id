@@ -17,7 +17,11 @@ export const getPolygonBoundingBox = (polygon: GeometryPolygon) => {
     return bounds;
 };
 
-export function propertiesTableDiv(props: ObjectLiteral) {
+export function propertiesTableDiv(
+    props: ObjectLiteral,
+    lngLat: [number, number]
+) {
+    console.log(lngLat);
     const listRow: string[] = [
         `<tr style='background-color: #dddddd; font-weight: bold'>
       <td>NAMA</td>
@@ -38,6 +42,16 @@ export function propertiesTableDiv(props: ObjectLiteral) {
             listRow.push(row);
         }
     }
+
+    const openGMaps = `<tr style='background-color: #dddddd; font-weight: bold'>
+      <td>Open</td>
+      <td><a href='${openInGoogleMaps(
+          lngLat[0],
+          lngLat[1]
+      )}' target='_blank'>Google Maps</a></td>
+    </tr>`;
+
+    listRow.push(openGMaps);
 
     return `<table style='border: 1px solid #dddddd'>${listRow.join(
         ""
@@ -107,3 +121,11 @@ export function wktToGeoJson(tableWKT: ObjectLiteral[], geojsonName: string) {
     };
     return { listFeature, geojson };
 }
+
+export const openInGoogleMaps = (
+    latitude: number | string,
+    longitude: number | string
+) => {
+    const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    return url;
+};

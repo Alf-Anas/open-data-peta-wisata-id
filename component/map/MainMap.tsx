@@ -91,7 +91,12 @@ export default function MainMap({
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
-                    .setHTML(propertiesTableDiv(e.features[0].properties))
+                    .setHTML(
+                        propertiesTableDiv(e.features[0].properties, [
+                            e.lngLat.lat,
+                            e.lngLat.lng,
+                        ])
+                    )
                     .addTo(map.current);
             });
 
